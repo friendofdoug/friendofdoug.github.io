@@ -2,8 +2,8 @@ body {
     font-family: Georgia, serif;
     line-height: 1.6;
     max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 10px auto;  /* Smaller top and bottom margin */
+    padding: 10px;       /* Also reduce padding if needed */
     color: #333;
 }
 header {
