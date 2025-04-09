@@ -57,7 +57,8 @@
                   <label for="charGoal">Char goal:</label>
                   <input type="number" id="charGoal" value="500" style="width: 80px;" />
                   <p id="goalStatus"></p>
-                
+                    <h3>Repeated Words (2+ uses)</h3>
+                    <ul id="repeatedWordsList" style="columns: 2; gap: 2rem;"></ul>
                   <h3>Keyword Density</h3>
                   <label for="keywordInput">Keyword or phrase:</label>
                   <input type="text" id="keywordInput" placeholder="Enter keyword..." style="width: 200px;" />
@@ -65,73 +66,92 @@
                     Occurrences: <span id="keywordCount" style="font-weight: bold;">0</span><br/>
                     Density: <span id="keywordDensity" style="font-weight: bold;">0%</span>
                   </p>
-                
-                  <script>
-                    const textInput = document.getElementById("textInput");
-                    const wordCountDisplay = document.getElementById("wordCount");
-                    const charCountSpacesDisplay = document.getElementById("charCountSpaces");
-                    const charCountNoSpacesDisplay = document.getElementById("charCountNoSpaces");
-                    const wordGoalInput = document.getElementById("wordGoal");
-                    const charGoalInput = document.getElementById("charGoal");
-                    const goalStatus = document.getElementById("goalStatus");
-                
-                    const keywordInput = document.getElementById("keywordInput");
-                    const keywordCountDisplay = document.getElementById("keywordCount");
-                    const keywordDensityDisplay = document.getElementById("keywordDensity");
-                
-                    function updateCounts() {
-                      const text = textInput.value;
-                      const words = text.trim().split(/\s+/).filter(w => w.length > 0);
-                      const charWithSpaces = text.length;
-                      const charNoSpaces = text.replace(/\s/g, '').length;
-                
-                      const wordCount = words.length;
-                      const charGoal = parseInt(charGoalInput.value) || 0;
-                      const wordGoal = parseInt(wordGoalInput.value) || 0;
-                
-                      wordCountDisplay.textContent = wordCount;
-                      charCountSpacesDisplay.textContent = charWithSpaces;
-                      charCountNoSpacesDisplay.textContent = charNoSpaces;
-                
-                      // Goal tracking
-                      let statusText = "";
-                      let statusClass = "";
-                
-                      if (wordCount >= wordGoal && charWithSpaces >= charGoal) {
-                        statusText = "🎉 You've met both your word and character goals!";
-                        statusClass = "color: green;";
-                      } else if (wordCount >= wordGoal || charWithSpaces >= charGoal) {
-                        statusText = "✅ You're close to your goal!";
-                        statusClass = "color: orange;";
-                      } else {
-                        statusText = `You need ${wordGoal - wordCount} more words and ${charGoal - charWithSpaces} more characters.`;
-                        statusClass = "color: red;";
-                      }
-                
-                      goalStatus.textContent = statusText;
-                      goalStatus.setAttribute("style", statusClass);
-                
-                      // Keyword density
-                      const keyword = keywordInput.value.trim().toLowerCase();
-                      let keywordCount = 0;
-                
-                      if (keyword.length > 0) {
-                        const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
-                        const matches = text.match(regex);
-                        keywordCount = matches ? matches.length : 0;
-                      }
-                
-                      const density = wordCount > 0 ? ((keywordCount / wordCount) * 100).toFixed(2) : "0.00";
-                
-                      keywordCountDisplay.textContent = keywordCount;
-                      keywordDensityDisplay.textContent = `${density}%`;
-                    }
-                
-                    textInput.addEventListener("input", updateCounts);
-                    wordGoalInput.addEventListener("input", updateCounts);
-                    charGoalInput.addEventListener("input", updateCounts);
-                    keywordInput.addEventListener("input", updateCounts);
-                  </script>
+                      <script>
+                          const textInput = document.getElementById("textInput");
+                          const wordCountDisplay = document.getElementById("wordCount");
+                          const charCountSpacesDisplay = document.getElementById("charCountSpaces");
+                          const charCountNoSpacesDisplay = document.getElementById("charCountNoSpaces");
+                          const wordGoalInput = document.getElementById("wordGoal");
+                          const charGoalInput = document.getElementById("charGoal");
+                          const goalStatus = document.getElementById("goalStatus");
+                        
+                          const keywordInput = document.getElementById("keywordInput");
+                          const keywordCountDisplay = document.getElementById("keywordCount");
+                          const keywordDensityDisplay = document.getElementById("keywordDensity");
+                        
+                          const repeatedWordsList = document.getElementById("repeatedWordsList");
+                        
+                          function updateCounts() {
+                            const text = textInput.value;
+                            const words = text
+                              .toLowerCase()
+                              .match(/\b\w+('\w+)?\b/g) || [];
+                        
+                            const charWithSpaces = text.length;
+                            const charNoSpaces = text.replace(/\s/g, '').length;
+                        
+                            const wordCount = words.length;
+                            const charGoal = parseInt(charGoalInput.value) || 0;
+                            const wordGoal = parseInt(wordGoalInput.value) || 0;
+                        
+                            wordCountDisplay.textContent = wordCount;
+                            charCountSpacesDisplay.textContent = charWithSpaces;
+                            charCountNoSpacesDisplay.textContent = charNoSpaces;
+                        
+                            // Goal tracking
+                            let statusText = "";
+                            let statusClass = "";
+                        
+                            if (wordCount >= wordGoal && charWithSpaces >= charGoal) {
+                              statusText = "🎉 You've met both your word and character goals!";
+                              statusClass = "color: green;";
+                            } else if (wordCount >= wordGoal || charWithSpaces >= charGoal) {
+                              statusText = "✅ You're close to your goal!";
+                              statusClass = "color: orange;";
+                            } else {
+                              statusText = `You need ${wordGoal - wordCount} more words and ${charGoal - charWithSpaces} more characters.`;
+                              statusClass = "color: red;";
+                            }
+                        
+                            goalStatus.textContent = statusText;
+                            goalStatus.setAttribute("style", statusClass);
+                        
+                            // Keyword density
+                            const keyword = keywordInput.value.trim().toLowerCase();
+                            let keywordCount = 0;
+                        
+                            if (keyword.length > 0) {
+                              const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+                              const matches = text.match(regex);
+                              keywordCount = matches ? matches.length : 0;
+                            }
+                        
+                            const density = wordCount > 0 ? ((keywordCount / wordCount) * 100).toFixed(2) : "0.00";
+                        
+                            keywordCountDisplay.textContent = keywordCount;
+                            keywordDensityDisplay.textContent = `${density}%`;
+                        
+                            // Repeated word detection
+                            const wordMap = {};
+                            for (const word of words) {
+                              wordMap[word] = (wordMap[word] || 0) + 1;
+                            }
+                        
+                            // Filter for repeated words only (count >= 2)
+                            const repeated = Object.entries(wordMap)
+                              .filter(([word, count]) => count > 1)
+                              .sort((a, b) => b[1] - a[1]);
+                        
+                            repeatedWordsList.innerHTML = repeated.map(([word, count]) => {
+                              return `<li><strong>${word}</strong>: ${count}</li>`;
+                            }).join('');
+                          }
+                        
+                          textInput.addEventListener("input", updateCounts);
+                          wordGoalInput.addEventListener("input", updateCounts);
+                          charGoalInput.addEventListener("input", updateCounts);
+                          keywordInput.addEventListener("input", updateCounts);
+                        </script>
                 </section>
         </div>
         <!--<div class="project">
