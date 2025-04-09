@@ -35,10 +35,75 @@
                 LAST UPDATE: 4/8/2025
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc3z1yr5EQK90UW1e3-DUVvT-km6_cGIRAECAuILzfKv54ong/viewform?embedded=true" width="640" height="854" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
-        <div class="project-item">
-            <h3>Word & Character Counter</h3>
-              <p>A simple live counter tool with word and character goals. Perfect for writing sprints or editing!</p>
-              <a href="word-counter.html" target="_blank">Try it here</a>
+    <section class="section" id="projects">
+        <div class="project">
+            <h3>Word & Character Counter — 4/8/2025</h3>
+              <p>To be honest, I'm not sure why I made this. It showed up in my to-create list in my Notes App (although I don't
+                  remember putting it there), so I decided maybe past me was trying to offer me some wisdom in trying to make this.
+                  It's basically a simple live counter tool with word and character goals that's perfect for writing or editing your work.
+                  I hope it can be there for you throughout all your writing endeavors!</p>
+                <textarea id="textInput" placeholder="Start typing..."></textarea>
+            <div class="countBox">
+                <p>Words: <span id="wordCount" class="count">0</span></p>
+                <p>Characters (with spaces): <span id="charCountSpaces" class="count">0</span></p>
+                <p>Characters (no spaces): <span id="charCountNoSpaces" class="count">0</span></p>
+            </div>
+          <h3>Set Your Goal</h3>
+          <label for="wordGoal">Word goal:</label>
+          <input type="number" id="wordGoal" value="100" style="width: 80px;" />
+          <label for="charGoal">Char goal:</label>
+          <input type="number" id="charGoal" value="500" style="width: 80px;" />
+        
+          <p id="goalStatus"></p>
+        
+          <script>
+            const textInput = document.getElementById("textInput");
+            const wordCountDisplay = document.getElementById("wordCount");
+            const charCountSpacesDisplay = document.getElementById("charCountSpaces");
+            const charCountNoSpacesDisplay = document.getElementById("charCountNoSpaces");
+            const wordGoalInput = document.getElementById("wordGoal");
+            const charGoalInput = document.getElementById("charGoal");
+            const goalStatus = document.getElementById("goalStatus");
+        
+            function updateCounts() {
+              const text = textInput.value;
+              const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+              const charWithSpaces = text.length;
+              const charNoSpaces = text.replace(/\s/g, '').length;
+        
+              const wordCount = words.length;
+              const charGoal = parseInt(charGoalInput.value) || 0;
+              const wordGoal = parseInt(wordGoalInput.value) || 0;
+        
+              wordCountDisplay.textContent = wordCount;
+              charCountSpacesDisplay.textContent = charWithSpaces;
+              charCountNoSpacesDisplay.textContent = charNoSpaces;
+        
+              let statusText = "";
+              let statusClass = "";
+        
+              if (wordCount >= wordGoal && charWithSpaces >= charGoal) {
+                statusText = "🎉 You've met both your word and character goals!";
+                statusClass = "goal-met";
+              } else if (wordCount >= wordGoal) {
+                statusText = "✅ Word goal reached!";
+                statusClass = "goal-close";
+              } else if (charWithSpaces >= charGoal) {
+                statusText = "✅ Character goal reached!";
+                statusClass = "goal-close";
+              } else {
+                statusText = `You need ${wordGoal - wordCount} more words and ${charGoal - charWithSpaces} more characters.`;
+                statusClass = "goal-exceeded";
+              }
+        
+              goalStatus.textContent = statusText;
+              goalStatus.className = statusClass;
+            }
+        
+            textInput.addEventListener("input", updateCounts);
+            wordGoalInput.addEventListener("input", updateCounts);
+            charGoalInput.addEventListener("input", updateCounts);
+          </script>
         </div>
         <!--<div class="project">
             <h3>Project 2: Another Cool Project</h3>
