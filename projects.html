@@ -42,68 +42,97 @@
                   remember putting it there), so I decided maybe past me was trying to offer me some wisdom in trying to make this.
                   It's basically a simple live counter tool with word and character goals that's perfect for writing or editing your work.
                   I hope it can be there for you throughout all your writing endeavors!</p>
-                <textarea id="textInput" placeholder="Start typing..."></textarea>
-            <div class="countBox">
-                <p>Words: <span id="wordCount" class="count">0</span></p>
-                <p>Characters (with spaces): <span id="charCountSpaces" class="count">0</span></p>
-                <p>Characters (no spaces): <span id="charCountNoSpaces" class="count">0</span></p>
-            </div>
-          <h3>Set Your Goal</h3>
-          <label for="wordGoal">Word goal:</label>
-          <input type="number" id="wordGoal" value="100" style="width: 80px;" />
-          <label for="charGoal">Char goal:</label>
-          <input type="number" id="charGoal" value="500" style="width: 80px;" />
-        
-          <p id="goalStatus"></p>
-        
-          <script>
-            const textInput = document.getElementById("textInput");
-            const wordCountDisplay = document.getElementById("wordCount");
-            const charCountSpacesDisplay = document.getElementById("charCountSpaces");
-            const charCountNoSpacesDisplay = document.getElementById("charCountNoSpaces");
-            const wordGoalInput = document.getElementById("wordGoal");
-            const charGoalInput = document.getElementById("charGoal");
-            const goalStatus = document.getElementById("goalStatus");
-        
-            function updateCounts() {
-              const text = textInput.value;
-              const words = text.trim().split(/\s+/).filter(w => w.length > 0);
-              const charWithSpaces = text.length;
-              const charNoSpaces = text.replace(/\s/g, '').length;
-        
-              const wordCount = words.length;
-              const charGoal = parseInt(charGoalInput.value) || 0;
-              const wordGoal = parseInt(wordGoalInput.value) || 0;
-        
-              wordCountDisplay.textContent = wordCount;
-              charCountSpacesDisplay.textContent = charWithSpaces;
-              charCountNoSpacesDisplay.textContent = charNoSpaces;
-        
-              let statusText = "";
-              let statusClass = "";
-        
-              if (wordCount >= wordGoal && charWithSpaces >= charGoal) {
-                statusText = "🎉 You've met both your word and character goals!";
-                statusClass = "goal-met";
-              } else if (wordCount >= wordGoal) {
-                statusText = "✅ Word goal reached!";
-                statusClass = "goal-close";
-              } else if (charWithSpaces >= charGoal) {
-                statusText = "✅ Character goal reached!";
-                statusClass = "goal-close";
-              } else {
-                statusText = `You need ${wordGoal - wordCount} more words and ${charGoal - charWithSpaces} more characters.`;
-                statusClass = "goal-exceeded";
-              }
-        
-              goalStatus.textContent = statusText;
-              goalStatus.className = statusClass;
-            }
-        
-            textInput.addEventListener("input", updateCounts);
-            wordGoalInput.addEventListener("input", updateCounts);
-            charGoalInput.addEventListener("input", updateCounts);
-          </script>
+                <section id="word-counter" style="margin-top: 2rem;">
+                  <textarea id="textInput" placeholder="Start typing..." style="width: 100%; height: 200px; padding: 1rem; font-size: 1rem; box-sizing: border-box;"></textarea>
+                
+                  <div style="margin-bottom: 1rem;">
+                    <p>Words: <span id="wordCount" style="font-weight: bold;">0</span></p>
+                    <p>Characters (with spaces): <span id="charCountSpaces" style="font-weight: bold;">0</span></p>
+                    <p>Characters (no spaces): <span id="charCountNoSpaces" style="font-weight: bold;">0</span></p>
+                  </div>
+                
+                  <h3>Set Your Goal</h3>
+                  <label for="wordGoal">Word goal:</label>
+                  <input type="number" id="wordGoal" value="100" style="width: 80px;" />
+                  <label for="charGoal">Char goal:</label>
+                  <input type="number" id="charGoal" value="500" style="width: 80px;" />
+                  <p id="goalStatus"></p>
+                
+                  <h3>Keyword Density</h3>
+                  <label for="keywordInput">Keyword or phrase:</label>
+                  <input type="text" id="keywordInput" placeholder="Enter keyword..." style="width: 200px;" />
+                  <p>
+                    Occurrences: <span id="keywordCount" style="font-weight: bold;">0</span><br/>
+                    Density: <span id="keywordDensity" style="font-weight: bold;">0%</span>
+                  </p>
+                
+                  <script>
+                    const textInput = document.getElementById("textInput");
+                    const wordCountDisplay = document.getElementById("wordCount");
+                    const charCountSpacesDisplay = document.getElementById("charCountSpaces");
+                    const charCountNoSpacesDisplay = document.getElementById("charCountNoSpaces");
+                    const wordGoalInput = document.getElementById("wordGoal");
+                    const charGoalInput = document.getElementById("charGoal");
+                    const goalStatus = document.getElementById("goalStatus");
+                
+                    const keywordInput = document.getElementById("keywordInput");
+                    const keywordCountDisplay = document.getElementById("keywordCount");
+                    const keywordDensityDisplay = document.getElementById("keywordDensity");
+                
+                    function updateCounts() {
+                      const text = textInput.value;
+                      const words = text.trim().split(/\s+/).filter(w => w.length > 0);
+                      const charWithSpaces = text.length;
+                      const charNoSpaces = text.replace(/\s/g, '').length;
+                
+                      const wordCount = words.length;
+                      const charGoal = parseInt(charGoalInput.value) || 0;
+                      const wordGoal = parseInt(wordGoalInput.value) || 0;
+                
+                      wordCountDisplay.textContent = wordCount;
+                      charCountSpacesDisplay.textContent = charWithSpaces;
+                      charCountNoSpacesDisplay.textContent = charNoSpaces;
+                
+                      // Goal tracking
+                      let statusText = "";
+                      let statusClass = "";
+                
+                      if (wordCount >= wordGoal && charWithSpaces >= charGoal) {
+                        statusText = "🎉 You've met both your word and character goals!";
+                        statusClass = "color: green;";
+                      } else if (wordCount >= wordGoal || charWithSpaces >= charGoal) {
+                        statusText = "✅ You're close to your goal!";
+                        statusClass = "color: orange;";
+                      } else {
+                        statusText = `You need ${wordGoal - wordCount} more words and ${charGoal - charWithSpaces} more characters.`;
+                        statusClass = "color: red;";
+                      }
+                
+                      goalStatus.textContent = statusText;
+                      goalStatus.setAttribute("style", statusClass);
+                
+                      // Keyword density
+                      const keyword = keywordInput.value.trim().toLowerCase();
+                      let keywordCount = 0;
+                
+                      if (keyword.length > 0) {
+                        const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+                        const matches = text.match(regex);
+                        keywordCount = matches ? matches.length : 0;
+                      }
+                
+                      const density = wordCount > 0 ? ((keywordCount / wordCount) * 100).toFixed(2) : "0.00";
+                
+                      keywordCountDisplay.textContent = keywordCount;
+                      keywordDensityDisplay.textContent = `${density}%`;
+                    }
+                
+                    textInput.addEventListener("input", updateCounts);
+                    wordGoalInput.addEventListener("input", updateCounts);
+                    charGoalInput.addEventListener("input", updateCounts);
+                    keywordInput.addEventListener("input", updateCounts);
+                  </script>
+                </section>
         </div>
         <!--<div class="project">
             <h3>Project 2: Another Cool Project</h3>
