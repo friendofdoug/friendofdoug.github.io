@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Boston Wine Events",
+    "link": "projects/wine-calendar.html",
+    "image": "icons/wine.png",
+    "description": "A calendar of wine events around Boston"
+  },
+  {
+    "title": "Word & Character Counter",
+    "link": "projects/word-counter.html",
+    "image": "icons/word.png",
+    "description": "A retro-styled word counting tool with sparkle animations"
+  }
+]
