@@ -1,112 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="ms_logo.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marina Santos - Personal Site</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="ms_logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marina Santos - Personal Site</title>
 </head>
 <body>
-    <header>
-        <h1>Marina Santos</h1>
-        <!--p>Personal Website</p>-->
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-    </nav>
-    <section class="section" id="about">
-        <h2>About Me</h2>
-        <p>
-            Hi! One of my (many, many) New Year's Resolutions for 2025 was to make as many efforts as I can to become more of a creator than a consumer, 
-            and this website is my way of documenting that! I'm excited and nervous and ecstatic that you are here to witness it.
-            Sending love and light through the screeniverse.
-        </p>
-    </section>
-    <section class="section" id="projects">
-        <h2>My Projects</h2>
-        <a href="https://calendar.google.com/calendar/embed?src=945c2b3d3cd9924264895578fd0c084cf2af6edc3935ef381222e109fcfa98d5%40group.calendar.google.com&ctz=America%2FNew_York" target="_blank"><h3>📝 Boston Wine Events</h3></a>
-        <br>
-        <a href="word-counter.html" target="_blank"><h3>📝 Word & Character Counter</h3></a>
-    <section class="section" id="projects">
-          <h2>My Projects</h2>
-          <div class="project-grid">
-            <a href="projects/wine-calendar.html" class="project-icon">
-              <img src="icons/wine.png" alt="Wine Calendar">
-              <p>Boston Wine Events</p>
-            </a>
-            <a href="projects/word-counter.html" class="project-icon">
-              <img src="icons/word.png" alt="Word Counter">
-              <p>Word Counter</p>
-            </a>
-            <!-- Add more projects here -->
-          </div>
-    </section>
-    <section class="section" id="projects">
-          <h2>My Projects</h2>
-          <div id="projects-container" class="project-grid"></div>
-    </section>
+  <header>
+    <h1>Marina Santos</h1>
+    <img src="icons/fun-banner.png" alt="Fun decorative banner" style="max-width: 200px; display: block; margin: 10px auto;">
+  </header>
 
-        <!--<div class="project">
-            <h3>Boston Area Wine Events</h3>
-            <p>
-                I've been trying to get more into the wine world this year, and one of the most important steps I've taken is trying to go to more tastings.
-                Creating this calendar with a bunch of events near me has been so helpful in lowering the barrier to action. Now, when I have some free time I can quickly check
-                this calendar and find an awesome new event to attend where I can expand my palate and my knowledge! I hope others can get some use out of it, too.
-            </p>
-            <iframe src="https://calendar.google.com/calendar/embed?src=945c2b3d3cd9924264895578fd0c084cf2af6edc3935ef381222e109fcfa98d5%40group.calendar.google.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
-        
-        <div class="project">
-            <h3>Project 2: Another Cool Project</h3>
-            <p>
-                Another project description highlighting your skills 
-                and the technologies you used to build it.
-            </p>
-        </div>
-    </section>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+  </nav>
 
-    <section class="section" id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>HTML & CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Python</li>
-            <li>Problem Solving</li>
-        </ul>
-    </section>-->
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <p>
+      Hi! One of my (many, many) New Year's Resolutions for 2025 was to make as many efforts as I can to become more of a creator than a consumer, 
+      and this website is my way of documenting that! I'm excited and nervous and ecstatic that you are here to witness it.
+      Sending love and light through the screeniverse.
+    </p>
+  </section>
 
-   <!-- <section class="section contact" id="contact">
-        <h2 type="button">Say hi!</h2>
-        <p>
-            Email: marina[dot]may[dot]santos@gmail.com<br>
-        </p>
-    </section>
--->
-    <footer>
-        <p>&copy; 2025 Marina Santos. All Rights Reserved.</p>
-    </footer>
-<script>
-  fetch('projects.json')
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById('projects-container');
-      data.forEach(project => {
-        const card = document.createElement('a');
-        card.href = project.link;
-        card.className = 'project-card';
-        card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}">
-          <div class="project-info">
-            <h3>${project.title}</h3>
-            <p>${project.description}</p>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    });
-</script>
+  <section class="section" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <a href="projects/wine-calendar.html" class="project-icon">
+        <img src="icons/wine.png" alt="Wine Calendar">
+        <p>Boston Wine Events</p>
+        <img src="images/wine-preview.png" alt="Wine project preview" style="max-width:100%;">
+      </a>
+      <a href="projects/word-counter.html" class="project-icon">
+        <img src="icons/word.png" alt="Word Counter">
+        <p>Word Counter</p>
+        <img src="images/word-counter-preview.png" alt="Word counter preview" style="max-width:100%;">
+      </a>
+      <!-- Add more project cards here -->
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>JavaScript</li>
+      <li>React</li>
+      <li>Python</li>
+      <li>Problem Solving</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Marina Santos. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
