@@ -85,7 +85,7 @@ nav a:hover {
   background-image: url('marinaoriginal_azulejo.png'); /* Make sure this path is correct! */
   background-repeat: repeat-x;
   background-size: auto 60px; /* Adjust height as needed */
-  height: 60px;
+  height: 40px;
   width: 100%;
   margin: 10px 0;
 }
