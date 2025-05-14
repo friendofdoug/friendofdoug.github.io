@@ -22,14 +22,14 @@ body {
 }
 
 /* Modern header with subtle gradient background */
-header {
+/* header {
   text-align: center;
   padding: 40px 20px;
   margin-bottom: 30px;
   border-bottom: none;
   background: linear-gradient(to right, #f8f9fa, #e9ecef);
   border-radius: 0 0 8px 8px;
-}
+} */
 
 h1 {
   color: var(--primary-color);
