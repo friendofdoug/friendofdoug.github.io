@@ -12,7 +12,7 @@
 }
 
 body {
-  font-family: Georgia, serif;
+  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.8;
   max-width: 1000px;
   margin: 0 auto;
@@ -22,14 +22,14 @@ body {
 }
 
 /* Modern header with subtle gradient background */
-/* header {
+header {
   text-align: center;
   padding: 40px 20px;
   margin-bottom: 30px;
   border-bottom: none;
   background: linear-gradient(to right, #f8f9fa, #e9ecef);
   border-radius: 0 0 8px 8px;
-} */
+}
 
 h1 {
   color: var(--primary-color);
