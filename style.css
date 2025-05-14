@@ -1,91 +1,236 @@
+/* Base styles with modern font stack and improved spacing */
+:root {
+  --primary-color: #3a6ea5;
+  --secondary-color: #004e98;
+  --accent-color: #ff9505;
+  --text-color: #333333;
+  --light-gray: #f5f7fa;
+  --medium-gray: #e5e9f0;
+  --dark-gray: #4f5e75;
+  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+  --transition: all 0.3s ease;
+}
+
 body {
-    font-family: Georgia, serif;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 10px auto;  /* Smaller top and bottom margin */
-    padding: 10px;       /* Also reduce padding if needed */
-    color: #333;
+  font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.8;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  color: var(--text-color);
+  background-color: white;
 }
+
+/* Modern header with subtle gradient background */
 header {
-    text-align: center;
-    border-bottom: 2px solid #f4f4f4;
-    padding-bottom: 20px;
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 30px;
+  border-bottom: none;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border-radius: 0 0 8px 8px;
 }
+
 h1 {
-    color: #2c3e50;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
-.section {
-    margin-top: 30px;
+
+h2 {
+  color: var(--secondary-color);
+  font-size: 1.8rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--medium-gray);
+  padding-bottom: 10px;
 }
-.project {
-    background-color: #f4f4f4;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+
+h3 {
+  color: var(--dark-gray);
+  font-size: 1.3rem;
+  margin-top: 25px;
+  font-weight: 600;
 }
-.contact {
-    text-align: center;
+
+p {
+  margin-bottom: 20px;
 }
+
+/* Improved navigation with hover effects */
 nav {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin: 0 0 30px 0;
+  padding: 15px 0;
+  background-color: var(--light-gray);
+  border-radius: 8px;
 }
+
 nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #2c3e50;
-    font-weight: bold;
+  margin: 0 15px;
+  text-decoration: none;
+  color: var(--dark-gray);
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: var(--transition);
 }
+
 nav a:hover {
-    text-decoration: underline;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: white;
 }
+
+/* Enhanced section styling */
+.section {
+  margin-top: 50px;
+  padding: 20px 0;
+}
+
+/* Improved project cards */
+.project {
+  background-color: var(--light-gray);
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--primary-color);
+  transition: var(--transition);
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+/* Enhanced project grid */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 10px 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
 }
 
 .project-card {
-  background: #fefefe;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow);
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
+  border: 1px solid var(--medium-gray);
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
 .project-card img {
   width: 100%;
-  height: 140px;
+  height: 180px;
   object-fit: cover;
+  border-bottom: 1px solid var(--medium-gray);
 }
 
 .project-info {
-  padding: 15px;
+  padding: 20px;
 }
 
 .project-info h3 {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  color: var(--primary-color);
 }
 
 .project-info p {
   margin: 0;
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 1rem;
+  color: var(--dark-gray);
+  line-height: 1.6;
 }
+
+/* Stylish contact section */
+.contact {
+  text-align: center;
+  padding: 30px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.contact a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.contact a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+/* Improved banner pattern */
 .banner-pattern {
-  background-image: url('marinaoriginal_azulejo.png'); /* Make sure this path is correct! */
+  background-image: url('marinaoriginal_azulejo.png');
   background-repeat: repeat-x;
-  background-size: auto 60px; /* Adjust height as needed */
-  height: 40px;
+  background-size: auto 70px;
+  height: 50px;
   width: 100%;
-  margin: 10px 0;
+  margin: 30px 0;
+  opacity: 0.85;
+  border-radius: 4px;
+}
+
+/* Button styles */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Footer styling */
+footer {
+  margin-top: 60px;
+  padding: 30px 0;
+  text-align: center;
+  color: var(--dark-gray);
+  border-top: 1px solid var(--medium-gray);
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  header {
+    padding: 30px 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  nav a {
+    margin: 0 8px;
+    padding: 6px 10px;
+  }
 }
